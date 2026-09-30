@@ -2,10 +2,21 @@
 
 En klickbar demo av poolövervakning och bokning av servicebesök. All data är påhittad.
 
-- **Tekniker** ser alla 42 pooler, larm, varningar och bokningskalendern.
-- **Kunder** ser bara sin egen pool och kan boka service, vinterstängning och vårstart.
-- Mätvärdena fylls på automatiskt, så graferna lever.
-- Bokningar sparas på riktigt: bokar Anna en tid dyker den upp hos teknikern, och när teknikern bekräftar ser Anna det.
+**För företaget (teknikern)**
+- **Översikt:** alla 42 pooler med status, grafer och föreslagen åtgärd.
+- **Larm:** aktiva larm och historik. Teknikern kvitterar med en kommentar.
+- **Servicebesök:** veckokalender, nya kundbokningar och säsongsmätare. Besök som saknar rapport markeras.
+- **Kunder och pooler:** kundkort med avtal, poolfakta, bokningar, rapporter och larmhistorik.
+- **Servicerapport:** mätvärden före och efter, tillsatt kemi och anteckningar. Kan stänga larmen, så att poolen blir grön igen.
+- **Statistik:** larm per vecka, tid till kvittering, pooler med flest larm och kemikalieförbrukning.
+
+**För kunden (appen)**
+- **Hem:** poolens status, värden och veckograf.
+- **Historik:** grafer för 7 eller 30 dagar och alla servicerapporter.
+- **Boka:** service, vinterstängning och vårstart i lediga tider.
+- **Meddelanden:** larm, påminnelser, bekräftelser och nya rapporter, med notis för olästa.
+
+Allt hänger ihop. Bokar kunden syns det hos teknikern, och bekräftar teknikern får kunden ett meddelande. Skriver teknikern en rapport dyker den upp i kundens app.
 
 Allt körs med bara två tjänster:
 
@@ -70,13 +81,20 @@ Klart! Adressen fungerar i både dator och mobil.
 
 ---
 
+## Uppdatera en demo som redan är uppsatt
+
+1. **Supabase:** kör hela den nya `supabase/setup.sql` i SQL Editor igen. Demodatan byggs om, och demokontona finns kvar.
+2. **GitHub:** klicka **Add file → Upload files** i repot och dra in `app.js` och `styles.css`. De ersätter de gamla filerna. Rör inte `config.js`, där ligger dina nycklar.
+3. Vänta en minut och ladda om sidan.
+
 ## Bra att veta
 
 - **Återställ demon:** logga in som tekniker och tryck **Återställ demon** på översikten. Då får du nya mätvärden och bokningar som utgår från dagens datum. Gör det gärna innan du visar demon.
 - **Ändringar syns inte direkt:** GitHub Pages behöver en minut eller två efter varje ändring. Ladda om sidan.
 - **Pausat projekt:** gratisprojekt i Supabase pausas efter en tids inaktivitet. Logga då in på Supabase och tryck **Restore project**.
 - **"Nästan klart":** visar sidan det har nycklarna i `config.js` inte fyllts i rätt.
-- **Knappar som bara låtsas:** "Sms:a kunden" och "Skicka påminnelse" visar bara en bekräftelse. I en riktig version kopplas de till sms eller mejl.
+- **Knappar som bara låtsas:** "Meddela kunden" och "Skicka påminnelse" skickar meddelanden som syns i kundens app. I en riktig version går de även ut som sms eller mejl.
+- **Bra demo-ordning:** logga in som tekniker och visa Larm. Skriv sedan en servicerapport för Berg med rutan "Markera larmen som åtgärdade" ikryssad. Logga därefter in som Per Berg: poolen är grön och rapporten ligger under Meddelanden och Historik.
 
 ## Så är det byggt
 
